@@ -31,7 +31,7 @@ pip install pyvmomi netaddr
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your_username/elasticsky.git
+   git clone https://github.com/arekzx/elasticsky.git
    cd elasticsky
 
 2. Configure inventory files:

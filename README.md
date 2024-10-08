@@ -20,8 +20,8 @@ Before using this repository, ensure that your environment meets the following r
 - Git: To clone and manage repository versions
 - Access to ESXi server(s): with administrative privileges
 - Python modules:
-   - pyvmomi (for VMware management via Ansible)
-   - netaddr (for IP address management)
+   - `pyvmomi` (for VMware management via Ansible)
+   - `netaddr` (for IP address management)
 
 You can install the required Python modules with:
 ```bash
@@ -35,12 +35,11 @@ pip install pyvmomi netaddr
    cd elasticsky
 
 2. Configure inventory files:
-Open and edit inventory/hosts.ini to define your target hosts and groups.
-Customize change_ip.ini and any other inventory files as needed to fit your infrastructure setup.
+Open and edit `inventory/hosts.ini` to define your target hosts and groups.
+Customize `change_ip.ini` and any other inventory files as needed to fit your infrastructure setup.
 
 3. Set up necessary variables:
-Adjust variable files in roles/vm_management/vars and playbooks/deployment/ if required for your environment.
-
+Adjust variable files in `roles/vm_management/vars` and `playbooks/deployment/` if required for your environment.
 
 ## Directory Structure
 

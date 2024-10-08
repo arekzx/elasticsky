@@ -48,11 +48,6 @@ To clone a VM using a predefined template:
 ```bash
 ansible-playbook -i inventory/hosts.ini playbooks/deployment/copyVm.yml --extra-vars "template_param=<template> destination_param=<new_vm>"
 ```
-## Contribution
-Feedback and contributions are welcome! Please report issues or ideas through the Issues tab on GitHub.
-
-
-
 
 ## Directory Structure
 
@@ -86,3 +81,9 @@ elasticsky/
     └── custom_esxi_tasks.sh  # Example ESXi script
 
 ```
+## Contribution
+Feedback and contributions are welcome! Please report issues or ideas through the Issues tab on GitHub.
+
+## License
+This project is dedicated to the public domain under the Unlicense. You are free to use, modify, distribute, and build upon this project in any way, for any purpose, without any restrictions.
+

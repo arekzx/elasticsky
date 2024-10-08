@@ -41,6 +41,19 @@ Customize `change_ip.ini` and any other inventory files as needed to fit your in
 3. Set up necessary variables:
 Adjust variable files in `roles/vm_management/vars` and `playbooks/deployment/` if required for your environment.
 
+## Usage
+Example: Cloning a VM
+To clone a VM using a predefined template:
+
+```bash
+   Copy code
+   ansible-playbook -i inventory/hosts.ini playbooks/deployment/copyVm.yml --extra-vars "template
+```
+
+
+
+
+
 ## Directory Structure
 
 ```plaintext

@@ -24,17 +24,9 @@ Before using this repository, ensure that your environment meets the following r
    - netaddr (for IP address management)
 
 You can install the required Python modules with:
-   ```bash
-   pip install pyvmomi netaddr
-   ```
-
-
-
-
-
-
-
-
+```bash
+pip install pyvmomi netaddr
+```
 
 ## Installation
 1. Clone the repository:
@@ -42,6 +34,12 @@ You can install the required Python modules with:
    git clone https://github.com/your_username/elasticsky.git
    cd elasticsky
 
+2. Configure inventory files:
+Open and edit inventory/hosts.ini to define your target hosts and groups.
+Customize change_ip.ini and any other inventory files as needed to fit your infrastructure setup.
+
+3. Set up necessary variables:
+Adjust variable files in roles/vm_management/vars and playbooks/deployment/ if required for your environment.
 
 
 ## Directory Structure

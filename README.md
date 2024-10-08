@@ -48,7 +48,8 @@ To clone a VM using a predefined template:
 ```bash
 ansible-playbook -i inventory/hosts.ini playbooks/deployment/copyVm.yml --extra-vars "template_param=<template> destination_param=<new_vm>"
 ```
-
+## Contribution
+Feedback and contributions are welcome! Please report issues or ideas through the Issues tab on GitHub.
 
 
 

@@ -33,6 +33,7 @@ elasticsky/
 └── esxi_scripts/             # Scripts to be run directly on ESXi
     └── custom_esxi_tasks.sh  # Example ESXi script
 
+```
 
 - [Installation](#installation)
 - [Usage](#usage)

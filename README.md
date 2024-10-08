@@ -2,6 +2,45 @@
 
 The `elasticsky` repository contains a set of Ansible playbooks and scripts for managing the deployment and configuration of virtual machines, primarily for AWX (Ansible Tower) environments. The project supports various tasks such as VM cloning, IP address management, and VM power control.
 
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Directory Structure](#directory-structure)
+- [Contributing](#contributing)
+- [License](#license)
+
+
+---
+## Requirements
+Before using this repository, ensure that your environment meets the following requirements:
+
+Ansible: Version 2.9 or higher
+AWX / Ansible Tower: For managing and scheduling tasks
+Git: To clone and manage repository versions
+Access to ESXi servers: with administrative privileges for VM operations
+Python modules:
+pyvmomi (for VMware management via Ansible)
+netaddr (for IP address management)
+You can install the required Python modules with:
+
+
+
+
+
+
+
+
+
+
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your_username/elasticsky.git
+   cd elasticsky
+
+
+
 ## Directory Structure
 
 ```plaintext
@@ -34,15 +73,3 @@ elasticsky/
     └── custom_esxi_tasks.sh  # Example ESXi script
 
 ```
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Directory Structure](#directory-structure)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your_username/elasticsky.git
-   cd elasticsky

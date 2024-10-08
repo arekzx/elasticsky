@@ -32,3 +32,11 @@ elasticsky/
 │   └── listAllVmsJSON.sh     # Script to list VMs in JSON format
 └── esxi_scripts/             # Scripts to be run directly on ESXi
     └── custom_esxi_tasks.sh  # Example ESXi script
+
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Directory Structure](#directory-structure)
+- [Contributing](#contributing)
+- [License](#license)
+

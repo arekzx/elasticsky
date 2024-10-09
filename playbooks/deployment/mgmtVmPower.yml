@@ -1,0 +1,15 @@
+- name: Run script on ESXi to manage VM power state
+  hosts: esxi
+  gather_facts: no
+  vars:
+    task: "{{ vm_task }}"  # Action first
+    vm: "{{ vm_name }}"  # VM name second
+  tasks:
+    - name: Execute vim-cmd power command
+      raw: "/vmfs/volumes/Datastore1/scripts/control_vm.sh {{ vm }} {{ task }}"
+      register: script_output
+
+    - name: Show script output
+      debug:
+        var: script_output
+

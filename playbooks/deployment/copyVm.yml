@@ -1,0 +1,15 @@
+- name: Run script on ESXi to clone a VM
+  hosts: esxi
+  gather_facts: no
+  vars:
+    template_name: "{{ template_param }}"  # Template name passed as a parameter
+    destination_name: "{{ destination_param }}"  # Destination VM name passed as a parameter
+  tasks:
+    - name: Execute template VM cloning
+      raw: /vmfs/volumes/Datastore1/scripts/clone_vm.sh Datastore1 {{ template_name }} {{ destination_name }}
+      register: script_output
+
+    - name: Show script output
+      debug:
+        var: script_output
+

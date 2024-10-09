@@ -1,0 +1,77 @@
+- name: Change Hostname for templ1
+  hosts: templ1  # Directly target the host
+  gather_facts: yes
+  vars:
+    new_hostname: "{{ hostname_param }}"  # New hostname passed as a parameter
+  tasks:
+    - name: Log start time of the playbook
+      command: date
+      register: start_time
+      changed_when: false
+
+    - name: Log start time
+      debug:
+        msg: "Playbook started at: {{ start_time.stdout }}"
+
+    - name: Ping the host to check connectivity
+      ping:
+
+    - name: Execute the hostname command
+      raw: sudo hostname
+      register: hostname_command_output
+
+    - name: Show the output of the hostname command
+      debug:
+        var: hostname_command_output.stdout
+          
+    - name: Ensure systemd-hostnamed is running
+      raw: sudo systemctl start systemd-hostnamed
+      register: hostnamed_start
+      ignore_errors: yes
+
+    - name: Change the hostname
+      raw: sudo hostnamectl set-hostname {{ new_hostname }}  # Use the new hostname
+      register: hostname_output
+
+    - name: Show hostname change output
+      debug:
+        var: hostname_output
+
+    - name: Restart the server
+      raw: sudo reboot
+      register: reboot_output
+
+    - name: Sleep for 30 seconds to allow the server to reboot
+      local_action: command sleep 30
+
+    - name: Wait for the server to come back online
+      wait_for:
+        host: "{{ ansible_host }}"
+        port: 22
+        timeout: 600  # Total wait time of 600 seconds (10 minutes)
+        delay: 10      # Initial delay before checking
+        state: started
+      register: wait_result
+      retries: 20  # Retry every 30 seconds for up to 10 minutes
+      delay: 30    # 30 seconds between retries
+
+    - name: Ping the new hostname to check connectivity
+      ping:
+
+    - name: Execute the hostname command
+      raw: sudo hostname
+      register: hostname_command_output
+
+    - name: Show the output of the hostname command
+      debug:
+        var: hostname_command_output.stdout
+
+    - name: Log end time of the playbook
+      command: date
+      register: end_time
+      changed_when: false
+
+    - name: Log end time
+      debug:
+        msg: "Playbook ended at: {{ end_time.stdout }}"
+

@@ -1,0 +1,12 @@
+- name: Run script on ESXi
+  hosts: esxi
+  gather_facts: no
+  tasks:
+    - name: List All VMs
+      raw: vim-cmd vmsvc/getallvms
+      register: script_output
+
+    - name: Show script output
+      debug:
+        var: script_output
+

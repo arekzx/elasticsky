@@ -1,0 +1,13 @@
+- name: Run script on ESXi
+  hosts: esxi
+  gather_facts: no
+  tasks:
+    - name: Execute test.sh script
+      #raw: ls -lRh /vmfs/volumes/Datastore1/
+      raw: ls -l /vmfs/volumes/Datastore1/
+      register: script_output
+
+    - name: Show script output
+      debug:
+        var: script_output
+

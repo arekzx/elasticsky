@@ -1,0 +1,37 @@
+- name: Change IP Address for the specified host
+  hosts: old_ip  # Target the current IP group
+  gather_facts: no  # Disable fact gathering for speed
+  become: true  # Use sudo globally for all tasks
+  become_method: sudo  # Explicitly use sudo if needed
+  vars:
+    interface: "ens160"  # Specify the network interface name
+  tasks:
+    - name: Backup current Netplan configuration using raw command
+      raw: sudo cp /etc/netplan/50-cloud-init.yaml /etc/netplan/50-cloud-init.yaml.bak
+
+    - name: Get the new IP address from the new_ip group
+      set_fact:
+        new_ip_with_mask: "{{ groups['new_ip'][0] }}"
+
+    - name: Update Netplan configuration with new IP including subnet mask
+      raw: |
+        sudo bash -c 'cat > /etc/netplan/50-cloud-init.yaml <<EOF
+        network:
+            version: 2
+            ethernets:
+                {{ interface }}:
+                    addresses:
+                      - {{ new_ip_with_mask }}
+                    gateway4: 10.0.0.1  # Replace with your gateway
+                    nameservers:
+                      addresses:
+                        - 8.8.8.8
+                        - 8.8.4.4
+        EOF'
+
+    - name: Apply Netplan with a 3-second delay and run in background
+      raw: sleep 3; sudo nohup netplan apply > /dev/null 2>&1 &
+
+    - name: Exit playbook after running netplan apply in the background
+      meta: end_play
+
